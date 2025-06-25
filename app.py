@@ -6,8 +6,8 @@ from datetime import datetime
 app = Flask(__name__)
 
 # === Telegram Bot Settings ===
-TELEGRAM_BOT_TOKEN = 'YOUR_TELEGRAM_BOT_TOKEN'  # 🔁 Replace with your token
-TELEGRAM_CHAT_ID = 'YOUR_CHAT_ID'               # 🔁 Replace with your chat ID
+TELEGRAM_BOT_TOKEN = '7959778482:AAFgqgf01UFX4QCKkYuNBiT4jt557m7LQuE'
+TELEGRAM_CHAT_ID = 'YOUR_CHAT_ID'
 
 # === Signal Generator ===
 def generate_signal():
