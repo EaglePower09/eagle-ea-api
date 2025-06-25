@@ -1,25 +1,37 @@
-from flask import Flask, request, jsonify
+from flask import Flask, jsonify
 
 app = Flask(__name__)
-latest_signal = {}
 
 @app.route('/')
 def home():
-    return "Eagle EA API is live!"
+    return jsonify({"message": "Eagle EA Scalper API is live."})
 
-@app.route('/send-signal', methods=['POST'])
-def send_signal():
-    global latest_signal
-    data = request.json
-    latest_signal = data
-    return jsonify({"status": "success", "message": "Signal received."})
+@app.route('/signal')
+def get_signal():
+    # This will be replaced with live signal logic
+    return jsonify({
+        "pair": "XAUUSD",
+        "direction": "buy",
+        "confidence": "high",
+        "mode": "sniper",
+        "session": "London"
+    })
 
-@app.route('/get-latest-signal', methods=['GET'])
-def get_latest_signal():
-    if latest_signal:
-        return jsonify({"status": "success", "signal": latest_signal})
-    else:
-        return jsonify({"status": "no signal", "signal": {}})
+@app.route('/latest')
+def latest_signals():
+    return jsonify([
+        {"pair": "NAS100", "direction": "sell", "confidence": "medium"},
+        {"pair": "USDJPY", "direction": "buy", "confidence": "high"}
+    ])
+
+@app.route('/gold')
+def gold_only():
+    return jsonify({
+        "pair": "XAUUSD",
+        "direction": "buy",
+        "confidence": "high",
+        "timestamp": "2025-06-25T11:30:00Z"
+    })
 
 if __name__ == '__main__':
     app.run()
