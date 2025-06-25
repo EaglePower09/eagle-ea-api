@@ -7,7 +7,7 @@ app = Flask(__name__)
 
 # === Telegram Bot Settings ===
 TELEGRAM_BOT_TOKEN = '7959778482:AAFgqgf01UFX4QCKkYuNBiT4jt557m7LQuE'
-TELEGRAM_CHAT_ID = 'YOUR_CHAT_ID'
+TELEGRAM_CHAT_ID = '6105818531'
 
 # === Signal Generator ===
 def generate_signal():
