@@ -40,9 +40,9 @@ def send_to_telegram(signal):
         f"Confidence: `{signal['confidence']}`\n"
         f"🕒 Time: `{signal['time']}`"
     )
-    url = f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/sendMessage"
+    url = f"https://api.telegram.org/bot{7959778482:AAE1O-hPLF-LdldUzRbY50f0RUC4PrmxsAw}/sendMessage"
     payload = {
-        "chat_id": TELEGRAM_CHAT_ID,
+        "chat_id": 6105818531,
         "text": text,
         "parse_mode": "Markdown"
     }
@@ -54,9 +54,9 @@ def send_to_telegram(signal):
 
 # === Bot Start Message ===
 def send_message(text):
-    url = f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/sendMessage"
+    url = f"https://api.telegram.org/bot{7959778482:AAE1O-hPLF-LdldUzRbY50f0RUC4PrmxsAw}/sendMessage"
     payload = {
-        "chat_id": TELEGRAM_CHAT_ID,
+        "chat_id": 6105818531,
         "text": text,
         "parse_mode": "Markdown"
     }
