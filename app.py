@@ -6,7 +6,7 @@ from datetime import datetime
 app = Flask(__name__)
 
 # === Config ===
-TELEGRAM_BOT_TOKEN = "7959778482:AAE1O-hPLF-LdldUzRbY50f0RUC4PrmxsAw"
+TELEGRAM_BOT_TOKEN = "7959778482:AAFgqgf01UFX4QCKkYuNBiT4jt557m7LQuE"
 TELEGRAM_CHAT_ID = "6105818531"
 
 # === Signal Generator ===
@@ -40,7 +40,7 @@ def send_to_telegram(signal):
         f"Confidence: `{signal['confidence']}`\n"
         f"🕒 Time: `{signal['time']}`"
     )
-    url = f"https://api.telegram.org/bot{7959778482:AAE1O-hPLF-LdldUzRbY50f0RUC4PrmxsAw}/sendMessage"
+    url = f"https://api.telegram.org/bot{7959778482:AAFgqgf01UFX4QCKkYuNBiT4jt557m7LQuE}/sendMessage"
     payload = {
         "chat_id": 6105818531,
         "text": text,
@@ -54,7 +54,7 @@ def send_to_telegram(signal):
 
 # === Bot Start Message ===
 def send_message(text):
-    url = f"https://api.telegram.org/bot{7959778482:AAE1O-hPLF-LdldUzRbY50f0RUC4PrmxsAw}/sendMessage"
+    url = f"https://api.telegram.org/bot{7959778482:AAFgqgf01UFX4QCKkYuNBiT4jt557m7LQuE}/sendMessage"
     payload = {
         "chat_id": 6105818531,
         "text": text,
