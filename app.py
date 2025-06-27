@@ -1,13 +1,17 @@
 from flask import Flask, jsonify, request
 import random
-import requests
 from datetime import datetime
 
 app = Flask(__name__)
 
-# === Config ===
-TELEGRAM_BOT_TOKEN = "7959778482:AAFgqgf01UFX4QCKkYuNBiT4jt557m7LQuE"
-TELEGRAM_CHAT_ID = "6105818531"
+# === License Keys ===
+valid_keys = [
+    "EAGLE-001-ACCESS",
+    "EAGLE-VIP-999",
+    "SCALPER-KEY-777",
+    "FREE-TRIAL-KEY-001",
+    "EAGLE-X92T3-VB74K-LP998"
+]
 
 # === Signal Generator ===
 def generate_signal():
@@ -29,64 +33,26 @@ def generate_signal():
     }
     return signal
 
-# === Telegram Sender ===
-def send_to_telegram(signal):
-    text = (
-        f"📢 *Eagle EA Scalper Signal*\n"
-        f"Pair: `{signal['pair']}`\n"
-        f"Direction: `{signal['direction']}`\n"
-        f"Session: `{signal['session']}`\n"
-        f"Mode: `{signal['mode']}`\n"
-        f"Confidence: `{signal['confidence']}`\n"
-        f"🕒 Time: `{signal['time']}`"
-    )
-    url = f"https://api.telegram.org/bot{7959778482:AAFgqgf01UFX4QCKkYuNBiT4jt557m7LQuE}/sendMessage"
-    payload = {
-        "chat_id": 6105818531,
-        "text": text,
-        "parse_mode": "Markdown"
-    }
-    try:
-        response = requests.post(url, json=payload)
-        print("Signal sent to Telegram:", response.text)
-    except Exception as e:
-        print("Telegram Error:", str(e))
-
-# === Bot Start Message ===
-def send_message(text):
-    url = f"https://api.telegram.org/bot{7959778482:AAFgqgf01UFX4QCKkYuNBiT4jt557m7LQuE}/sendMessage"
-    payload = {
-        "chat_id": 6105818531,
-        "text": text,
-        "parse_mode": "Markdown"
-    }
-    try:
-        response = requests.post(url, json=payload)
-        print("Bot message sent:", response.text)
-    except Exception as e:
-        print("Send Message Error:", str(e))
-
-# === API Routes ===
+# === Routes ===
 @app.route('/', methods=['GET'])
 def home():
-    return jsonify({"status": "Eagle EA API is live ✅"})
+    return jsonify({"status": "Eagle EA Scalper API is live ✅"})
 
-@app.route('/start', methods=['GET'])
-def start_bot():
-    message = "🤖 Eagle EA Scalper Bot has started!"
-    send_message(message)
-    return jsonify({"message": "Bot started"})
+@app.route('/validate', methods=['POST'])
+def validate_license():
+    data = request.get_json()
+    license_key = data.get("license_key")
 
-@app.route('/signal', methods=['GET'])
-def generate_and_send_signal():
-    signal = generate_signal()
-    send_to_telegram(signal)
-    return jsonify(signal)
+    if license_key in valid_keys:
+        return jsonify({"status": "VALID"})
+    else:
+        return jsonify({"status": "INVALID"})
 
 @app.route('/latest', methods=['GET'])
-def latest_for_app():
+def latest_signal():
     signal = generate_signal()
     return jsonify(signal)
 
+# === Run ===
 if __name__ == '__main__':
     app.run(debug=True)
